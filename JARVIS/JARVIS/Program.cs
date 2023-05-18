@@ -4,58 +4,53 @@ using JARVIS.Option;
 Console.Title = $"JARVIS(v0.0.1)";
 
 // Initializing....
-SetupManager setupManager = new();
+DisplayUnit displayUnit = new(SetupManager.OptionModels);
 
-var options = Environment.GetCommandLineArgs();
+// Reading cmd args
+var cmdArgs = Environment.GetCommandLineArgs();
 
-string? option = string.Empty;
+string? key = string.Empty;
 
-if (options?.Any() == true && options.Length == 2)
+// Trying to understand the command line args if available
+if (cmdArgs?.Any() == true && cmdArgs.Length == 2)
 {
-    option = options[1];
+    key = cmdArgs[1]?.Trim()?.ToLower();
+}
+
+IOptionResolver resolver = new DefaultOptionResolver();
+
+if (!string.IsNullOrWhiteSpace(key))
+{
+    var keyResolver = SetupManager.OptionModels.FirstOrDefault(element => element.Resolver.Key == key)?.Resolver;
+    if (keyResolver == null)
+    {
+        return;
+    }
+
+    await keyResolver.Resolve();
+    return;
 }
 
 while (true)
 {
-    IOptionResolver? resolver;
+    string option = displayUnit.ShowOptions();
 
-    if (string.IsNullOrWhiteSpace(option?.Trim()))
+    if (option?.ToLower() == "q" || option?.ToLower() == "quit")
     {
-        Console.WriteLine("Options.. \n");
-
-        setupManager.optionModels.ForEach(model =>
-        {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"{model.Id}, {model.Name}");
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine($"\t{model.Description}");
-            Console.ResetColor();
-        });
-
-        Console.Write("Your choice: ");
-        option = Console.ReadLine();
-
-        if (option == "q" || option?.ToLower() == "quit" || option?.ToLower() == "exit")
-        {
-            break;
-        }
-
-        if (!int.TryParse(option, out int value))
-        {
-            Console.WriteLine($"Invalid option");
-            continue;
-        }
-
-        resolver = setupManager.optionModels.FirstOrDefault(element => element.Id == value)?.OptionResolver;
-    }
-    else
-    {
-        resolver = setupManager.optionModels.FirstOrDefault(element => element.Key == option)?.OptionResolver;
+        Console.WriteLine("See you later :)");
+        break;
     }
 
-    resolver ??= new DefaultOptionResolver();
+    if (!int.TryParse(option ?? string.Empty, out int value) || !SetupManager.OptionModels.Any(A => A.Id == value))
+    {
+        Console.WriteLine("Please review the option :@");
+        option = string.Empty;  // Resetting the option.
+        continue;
+    }
+
+    resolver = SetupManager.OptionModels.FirstOrDefault(element => element.Id == value)!.Resolver;
 
     await resolver.Resolve();
 
-    option = null; // Resetting the option.
+    option = string.Empty;  // Resetting the option.
 }

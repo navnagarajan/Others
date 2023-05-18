@@ -2,7 +2,11 @@
 {
     public class GuidGenerator : IOptionResolver
     {
+        public string Key => "guid";
+        public string Name => "GUID";
+        public string Description => "Display New GUID";
         public double Version => 1.0;
+
 
         public async Task Resolve()
         {

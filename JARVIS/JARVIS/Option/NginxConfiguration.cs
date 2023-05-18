@@ -16,7 +16,11 @@
         }
 }";
 
-        public double Version { get => 1.0; }
+        public string Key => "nginx";
+        public string Name => "NGINX";
+        public string Description => "NGINX deployment configuration";
+        public double Version => 1.0;
+
 
         public async Task Resolve()
         {

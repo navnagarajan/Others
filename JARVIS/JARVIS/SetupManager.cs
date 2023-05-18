@@ -5,58 +5,42 @@ namespace JARVIS
 {
     public sealed class SetupManager
     {
-        public List<OptionModel> optionModels = new()
+        public static readonly List<OptionModel> OptionModels = new()
         {
             new OptionModel
             {
-                Id = 0,
-                Key = "nginx-config",
-                Name = "NGINX Configurations",
-                Description = "Preparing NGINX configurations",
-                OptionResolver = new NginxConfiguration()
+                Id = 1,
+                Resolver = new NginxConfiguration()
             },
             new OptionModel
             {
-                Id = 0,
-                Key = "db-config",
-                Name = "Database Configurations",
-                Description = "Preparing new database create query, new user create query and user login permission query.",
-                OptionResolver = new DatabaseConfiguration()
+                Id = 2,
+                Resolver = new DatabaseConfiguration()
             },
             new OptionModel
             {
-                Id = 0,
-                Key = "rnd-psw",
-                Name = "Random Password",
-                Description = "Create a random password based on required length",
-                OptionResolver = new RandomPassword()
+                Id = 3,
+                Resolver = new RandomPassword()
             },
             new OptionModel
             {
-                Id = 0,
-                Key = "sql-login",
-                Name = "SQL Login",
-                Description = "Create new SQL user login query and SQL user permission",
-                OptionResolver = new SqlLoginCredentials()
+                Id = 4,
+                Resolver = new SqlLoginCredentials()
             },
              new OptionModel
             {
-                Id = 0,
-                Key = "new-guid",
-                Name = "New Guid",
-                Description = "Generate new guid",
-                OptionResolver = new GuidGenerator()
+                Id = 5,
+                Resolver = new GuidGenerator()
+            },
+             new OptionModel
+            {
+                Id = 5,
+                Resolver = new HelpResolver()
             },
         };
 
-        public SetupManager()
+        private SetupManager()
         {
-            int index = 1;
-            optionModels.ForEach(element =>
-            {
-                element.Id = index;
-                index++;
-            });
         }
     }
 }

@@ -6,6 +6,9 @@
         private const string CreateNewDbUserTemplate = "CREATE USER '{@DB_USER_NAME}'@'%' IDENTIFIED BY '{@DB_USER_PASSWORD}';";
         private const string GrantUserPermissionTemplate = "GRANT SELECT, INSERT, CREATE, ALTER, DROP, LOCK TABLES, CREATE TEMPORARY TABLES, DELETE, UPDATE, EXECUTE ON {@DB_NAME}.* TO'{@DB_USER_NAME}'@'%';";
 
+        public string Key => "db-config";
+        public string Name => "Database configs";
+        public string Description => "Generate create database query, user query and user permission query";
         public double Version => 1.0;
 
         public async Task Resolve()
