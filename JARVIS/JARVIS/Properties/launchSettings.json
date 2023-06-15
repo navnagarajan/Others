@@ -1,7 +1,10 @@
 {
   "profiles": {
     "JARVIS": {
-      "commandName": "Project"
+      "commandName": "Project",
+      "environmentVariables": {
+        "ENV": "DEV"
+      }
     }
   }
 }

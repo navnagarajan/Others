@@ -18,7 +18,7 @@
 
         public string Key => "nginx";
         public string Name => "NGINX";
-        public string Description => "NGINX deployment configuration";
+        public string ShortDescription => "NGINX deployment configuration";
         public double Version => 1.0;
 
 

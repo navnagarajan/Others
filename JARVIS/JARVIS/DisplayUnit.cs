@@ -14,13 +14,13 @@ namespace JARVIS
         {
             _optionModel.ForEach(model =>
             {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"{model.Id}, {model.Resolver.Name} [{model.Resolver.Key}]");
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine($"{model.Id}, {model.Resolver.Name}");
 
-                if (!string.IsNullOrWhiteSpace(model.Resolver.Description))
+                if (!string.IsNullOrWhiteSpace(model.Resolver.ShortDescription))
                 {
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine($"  > {model.Resolver.Description}");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"# {model.Resolver.ShortDescription}");
                 }
             });
 

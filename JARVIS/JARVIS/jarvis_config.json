@@ -1,0 +1,8 @@
+{
+  "ScreenshotManagerConfig": {
+    "NameFilter": "-, ,(,)",
+    "Substitute": "_",
+    "SourceDirectory": "C:\\Users\\NavNa\\Pictures\\Screenshots",
+    "DestinationDirectory": "C:\\Users\\NavNa\\Pictures\\Screenshots"
+  }
+}

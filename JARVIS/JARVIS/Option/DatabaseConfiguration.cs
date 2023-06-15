@@ -8,7 +8,7 @@
 
         public string Key => "db-config";
         public string Name => "Database configs";
-        public string Description => "Generate create database query, user query and user permission query";
+        public string ShortDescription => "Generate create database query, user query and user permission query";
         public double Version => 1.0;
 
         public async Task Resolve()
