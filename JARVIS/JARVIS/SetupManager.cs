@@ -37,6 +37,11 @@ namespace JARVIS
                 Id = 6,
                 Resolver = new HelpResolver()
             },
+            new OptionModel
+            {
+                Id = 7,
+                Resolver = new ScreenshotManager()
+            },
         };
 
         private SetupManager()

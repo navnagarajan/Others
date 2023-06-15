@@ -7,7 +7,7 @@
 
         public string Key => "rnd-psw";
         public string Name => "Random Password";
-        public string Description => "Generate random password";
+        public string ShortDescription => "Generate random password";
         public double Version => 1.0;
 
 

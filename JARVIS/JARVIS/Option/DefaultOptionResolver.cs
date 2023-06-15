@@ -4,7 +4,7 @@
     {
         public string Key => "default";
         public string Name => "Default";
-        public string Description => "";
+        public string ShortDescription => "";
         public double Version => 1.0;
 
 

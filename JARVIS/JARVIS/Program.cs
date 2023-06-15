@@ -1,7 +1,39 @@
 ﻿using JARVIS;
+using JARVIS.Model;
 using JARVIS.Option;
+using JARVIS.Utils;
+using Newtonsoft.Json;
 
 Console.Title = $"JARVIS(v0.0.1)";
+
+string currentDirectory = Directory.GetCurrentDirectory();
+string configFilePath = string.Empty;
+
+var data = Environment.GetEnvironmentVariable("ENV");
+
+if (data == "DEV")
+{
+    configFilePath = Path.Join(currentDirectory, "jarvis_config.json");
+}
+else
+{
+    configFilePath = Path.Join(currentDirectory, "Documents", "jarvis_config.json");
+}
+
+if (File.Exists(configFilePath))
+{
+
+    string configurations = System.IO.File.ReadAllText(configFilePath);
+
+    AppSettingsModel? model = JsonConvert.DeserializeObject<AppSettingsModel>(configurations);
+
+    if (model != null)
+        AppConstants.ScreenshotManagerConfig = model.ScreenshotManagerConfig;
+}
+else
+{
+    Console.WriteLine($"Kindly place your jarvis_config.json file on {configFilePath}");
+}
 
 // Initializing....
 DisplayUnit displayUnit = new(SetupManager.OptionModels);
