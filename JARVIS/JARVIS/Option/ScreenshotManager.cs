@@ -45,12 +45,21 @@ namespace JARVIS.Option
 
                 List<string> filterCriteria = new();
 
-                if (!string.IsNullOrWhiteSpace(rawFilter))
+                if (!string.IsNullOrWhiteSpace(rawFilter) && rawFilter != "*")
                 {
                     filterCriteria = rawFilter.Split(',').ToList();
                 }
 
-                var unmodifiedFiles = files.Where(W => filterCriteria.Any(A => W.Name.Contains(A)))?.ToList();
+                List<FileInfo> unmodifiedFiles = new();
+
+                if (filterCriteria.Any() == true)
+                {
+                    unmodifiedFiles = files.Where(W => filterCriteria.Any(A => W.Name.Contains(A)))?.ToList() ?? new List<FileInfo>();
+                }
+                else
+                {
+                    unmodifiedFiles = files.ToList();
+                }
 
                 if (unmodifiedFiles?.Any() != true)
                 {
@@ -66,14 +75,9 @@ namespace JARVIS.Option
 
                 foreach (FileInfo file in unmodifiedFiles)
                 {
-                    string formattedFileName = file.Name.Replace(" ", substitute)
-                    .Replace("-", substitute)
-                    .Replace("(", substitute)
-                    .Replace(")", substitute)
-                    .Replace($"{substitute}{substitute}", substitute)
-                    .Replace($"{substitute}{substitute}{substitute}", substitute)
-                    .ToLower();
 
+                    string formattedFileName = $"IMG_{file.CreationTime:s}".Replace("-", substitute).Replace(":", substitute).Replace("T", substitute);
+                    formattedFileName += Path.GetExtension(file.Name);
 
                     string folderNameYear = $"{file.CreationTime:yyyy}";
                     string targetDir = Path.Join(destinationDirectoryPath, folderNameYear);
@@ -82,7 +86,6 @@ namespace JARVIS.Option
                     {
                         Directory.CreateDirectory(targetDir);
                     }
-
 
                     targetDir = Path.Join(targetDir, $"{file.CreationTime:MM} - {file.CreationTime:MMMM}");
 
