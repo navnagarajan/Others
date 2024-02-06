@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace JARVIS.Option
+﻿namespace JARVIS.Option
 {
     public class DefaultOptionResolver : IOptionResolver
     {
-        public double Version => 0.0;
+        public string Key => "default";
+        public string Name => "Default";
+        public string ShortDescription => "";
+        public double Version => 1.0;
+
 
         public async Task Resolve()
         {

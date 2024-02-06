@@ -1,0 +1,8 @@
+{
+  "ScreenshotManagerConfig": {
+    "NameFilter": "*",
+    "Substitute": "_",
+    "SourceDirectory": "C:\\Users\\NavNa\\OneDrive\\Pictures\\Screenshots",
+    "DestinationDirectory": "C:\\Users\\NavNa\\OneDrive\\Pictures\\Screenshots"
+  }
+}
