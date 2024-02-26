@@ -44,6 +44,11 @@ namespace JARVIS
             },
             new OptionModel
             {
+                Id = 9,
+                Resolver = new TimeDurationCalculator()
+            },
+            new OptionModel
+            {
                 Id = 99,
                 Resolver = new HelpResolver()
             },

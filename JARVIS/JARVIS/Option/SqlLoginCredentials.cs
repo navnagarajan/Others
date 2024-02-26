@@ -10,7 +10,7 @@ ALTER ROLE {@ROLE} ADD MEMBER[{@USERNAME}]";
         public string ShortDescription => "Generate sql login with username and password with dbo schema.";
         public double Version => 1.0;
 
-        public async Task Resolve()
+        public async Task Resolve(List<string>? pParams = null)
         {
             Console.WriteLine(template);
         }

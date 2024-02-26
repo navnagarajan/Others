@@ -12,7 +12,7 @@
 
         private readonly string INVALID_CONVERT_NOTATION = "-";
 
-        public async Task Resolve()
+        public async Task Resolve(List<string>? pParams = null)
         {
             Console.Write("Enter the Source (comma separated string): ");
             string value = Console.ReadLine() ?? string.Empty;
