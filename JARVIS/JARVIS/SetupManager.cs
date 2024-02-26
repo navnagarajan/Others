@@ -32,15 +32,20 @@ namespace JARVIS
                 Id = 5,
                 Resolver = new GuidGenerator()
             },
-             new OptionModel
-            {
-                Id = 6,
-                Resolver = new HelpResolver()
-            },
             new OptionModel
             {
                 Id = 7,
                 Resolver = new ScreenshotManager()
+            },
+            new OptionModel
+            {
+                Id = 8,
+                Resolver = new ValueConverter()
+            },
+            new OptionModel
+            {
+                Id = 99,
+                Resolver = new HelpResolver()
             },
         };
 

@@ -44,7 +44,7 @@ var cmdArgs = Environment.GetCommandLineArgs();
 string? key = string.Empty;
 
 // Trying to understand the command line args if available
-if (cmdArgs?.Any() == true && cmdArgs.Length == 2)
+if (cmdArgs?.Any() == true && cmdArgs.Length == 2 && data != "DEV")
 {
     key = cmdArgs[1]?.Trim()?.ToLower();
 }
