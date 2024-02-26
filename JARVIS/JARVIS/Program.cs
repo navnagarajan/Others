@@ -44,7 +44,7 @@ var cmdArgs = Environment.GetCommandLineArgs();
 string? key = string.Empty;
 
 // Trying to understand the command line args if available
-if (cmdArgs?.Any() == true && cmdArgs.Length == 2)
+if (cmdArgs?.Any() == true && data != "DEV")
 {
     key = cmdArgs[1]?.Trim()?.ToLower();
 }
@@ -59,7 +59,18 @@ if (!string.IsNullOrWhiteSpace(key))
         return;
     }
 
-    await keyResolver.Resolve();
+    List<string> options = new();
+
+    if (cmdArgs?.Any() == true)
+    {
+        foreach (var item in cmdArgs)
+        {
+            options.Add(item);
+            //Console.WriteLine($"{item},");
+        }
+    }
+
+    await keyResolver.Resolve(options);
     return;
 }
 

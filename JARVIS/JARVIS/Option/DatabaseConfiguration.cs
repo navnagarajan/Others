@@ -11,7 +11,7 @@
         public string ShortDescription => "Generate create database query, user query and user permission query";
         public double Version => 1.0;
 
-        public async Task Resolve()
+        public async Task Resolve(List<string>? pParams = null)
         {
             Console.Write("Database name : ");
             string? dbName = Console.ReadLine();

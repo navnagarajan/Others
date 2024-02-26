@@ -12,7 +12,7 @@ namespace JARVIS.Option
 
         public double Version => 1.0;
 
-        public async Task Resolve()
+        public async Task Resolve(List<string>? pParams = null)
         {
             try
             {

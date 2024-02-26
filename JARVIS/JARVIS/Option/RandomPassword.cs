@@ -11,7 +11,7 @@
         public double Version => 1.0;
 
 
-        public async Task Resolve()
+        public async Task Resolve(List<string>? pParams = null)
         {
             Console.WriteLine("Enter length for Random Password (default is 8):");
             
